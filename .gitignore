@@ -1,0 +1,5 @@
+# IntelliJ IDEA
+*.ant
+*.project
+*.idea
+*.iml
