@@ -13,7 +13,7 @@ config(['$routeProvider', function($routeProvider) {
 }]);
 
 
-app.controller('MainCtrl', ['$scope', function ($scope) {
+myApp.controller('MainCtrl', ['$scope', function ($scope) {
 
   $scope.myData = [
     {
