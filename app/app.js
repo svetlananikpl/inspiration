@@ -7,11 +7,12 @@ var myApp = angular.module('myApp', [
     'myApp.view2',
     'myApp.view3',
     'myApp.version',
-    'myControllers',
-    'myControllers2',
+    'myControllersFiltering',
+    'myControllersTableScroll',
     'ui.grid',
-    'ui.grid.infiniteScroll'
-]);
+    'ui.grid.infiniteScroll',
+    'mySearchService'
+    ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/view1'});

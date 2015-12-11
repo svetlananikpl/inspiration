@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myControllers', [])
+angular.module('myControllersTableScroll', [])
     .controller('MainTableScrollCtrl',
     ['$scope', '$http', '$timeout', '$q', function ($scope, $http, $timeout, $q) {
 

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myControllers2', [])
+angular.module('myControllersFiltering', [])
     .controller('MainTableFilteringCtrl',
-        ['$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants) {
+        ['$scope', 'uiGridConstants', 'searchService', function ($scope, uiGridConstants, searchService) {
 
             $scope.highlightFilteredHeader = function (row, rowRenderIndex, col, colRenderIndex) {
                 if (col.filters[0].term) {
@@ -53,23 +53,38 @@ angular.module('myControllers2', [])
                 ]
             };
 
-            $http.get('data/100_complex.json')
-                .success(function (data) {
-                    console.log(data);
-                    $scope.gridOptions.data = data;
-                    $scope.data = data;
+            $scope.gridOptions.data = [];
 
+
+
+            searchService.all(function (data) {
+                $scope.gridOptions.data = data;
+                data.forEach(function changeGender(row) {
+                    row.gender = row.gender === 'male' ? '1' : '2';
+                });
+            });
+
+            $scope.searchButton = function(){
+
+                var searchStr = $scope.search;
+                searchService.search(searchStr, function (data) {
+                    $scope.gridOptions.data = data;
                     data.forEach(function changeGender(row) {
                         row.gender = row.gender === 'male' ? '1' : '2';
-                    })
-                });
+                    });
+                    $scope.gridApi.core.refresh();
+                })
+            };
+
 
             $scope.toggleFiltering = function () {
                 $scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering;
                 $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
             };
+
         }])
-    .filter('mapGender', function () {
+    .
+    filter('mapGender', function () {
         var genderHash = {
             1: 'male',
             2: 'female'
