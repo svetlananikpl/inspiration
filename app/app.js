@@ -11,7 +11,10 @@ var myApp = angular.module('myApp', [
     'myControllersTableScroll',
     'ui.grid',
     'ui.grid.infiniteScroll',
-    'mySearchService'
+    'mySearchService',
+    'nvd3',
+    'myControllersStackedAreaChart',
+    'myControllersTree'
     ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {

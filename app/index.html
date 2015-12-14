@@ -18,20 +18,28 @@
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="styleSheet" href="bower_components/angular-ui-grid/ui-grid.css"/>
-
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
 
 </head>
 <body>
-<ul class="menu">
-    <li><a href="#/view1">page1</a></li>
-    <li><a href="#/view2">page2</a></li>
-    <li><a href="#/view3">page3</a></li>
-</ul>
+
+
+<div class="menu">
+            <div class="container">
+            <ul class="nav">
+                <li><a href="#/view1">page1</a></li>
+                <li><a href="#/view2">page2</a></li>
+                <li><a href="#/view3">page3</a></li>
+            </ul>
+        </div>
+    </div>
 
 
 <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
@@ -45,6 +53,8 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="controllerTableScroll.js"></script>
 <script src="controllerTableFiltering.js"></script>
+<script src="controllerStackedAreaChart.js"></script>
+<script src="controllerTree.js"></script>
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
 <script src="view2/view2.js"></script>
@@ -54,8 +64,9 @@
 <script src="components/version/interpolate-filter.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
 <script src="view1/searchService.js"></script>
-
-
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/nvd3/build/nv.d3.js"></script>
+<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
 
 
 </body>

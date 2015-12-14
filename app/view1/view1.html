@@ -4,7 +4,9 @@
 
 
 <div ng-controller="MainTableFilteringCtrl">
-    <label>Search: </label><input type="text" ng-model="search"/><button ng-click= "searchButton()">Search</button>
+    <div class="input">
+        <label>Search: </label><input type="text" ng-model="search"/><button ng-click= "searchButton()">Search</button>
+    </div>
 
         <div id="gridFiltering" ui-grid="gridOptions" class="myGrid"></div>
 </div>
