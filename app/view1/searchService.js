@@ -68,19 +68,19 @@ angular.module('mySearchService', [])
                                 name: 'female',
                                 children: [
                                     {
-                                        "age": "15-35",
+                                        "age": "age: 15-35",
                                         "children": []
                                     },
                                     {
-                                        "age": "36-50",
+                                        "age": "age: 36-50",
                                         "children": []
                                     },
                                     {
-                                        "age": "51-65",
+                                        "age": "age: 51-65",
                                         "children": []
                                     },
                                     {
-                                        "age": "over 65",
+                                        "age": "age: over 65",
                                         "children": []
                                     }
                                 ]
