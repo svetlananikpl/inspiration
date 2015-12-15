@@ -37,6 +37,64 @@ angular.module('mySearchService', [])
                         return callback(result);
                     });
 
+            },
+            tree: function (callback) {
+                $http.get('data/100_complex.json')
+                    .success(function (data) {
+
+                        var result = [
+                            {
+                                name: 'male',
+                                children: [
+                                    {
+                                        "age": "15-35",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "36-50",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "51-65",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "over 60",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                name: 'female',
+                                children: [
+                                    {
+                                        "age": "15-35",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "36-50",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "51-65",
+                                        "children": []
+                                    },
+                                    {
+                                        "age": "over 65",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ];
+
+                        data.forEach(function (item) {
+                            result[item.gender === "male" ? 0 : 1]
+                                .children[(item.age < 36) ? 0 : (item.age < 51) ? 1 : (item.age < 66) ? 2 : 3]
+                                .children.push(item);
+                        });
+
+                        return callback(result);
+                    });
             }
 
         }

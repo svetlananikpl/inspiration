@@ -14,7 +14,8 @@ var myApp = angular.module('myApp', [
     'mySearchService',
     'nvd3',
     'myControllersStackedAreaChart',
-    'myControllersTree'
+    'myControllersTree',
+    'treeControl'
     ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {
