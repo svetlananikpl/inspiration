@@ -11,8 +11,8 @@ controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope,
             margin: {
                 top: 20,
                 right: 20,
-                bottom: 30,
-                left: 40
+                bottom: 50,
+                left: 70
             },
             x: function (d) {
                 return d[0];
@@ -25,6 +25,7 @@ controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope,
             duration: 100,
             useInteractiveGuideline: true,
             xAxis: {
+                axisLabel: "age",
                 //tickFormat: function (d) {
                 //    return d3.format(',.2f')(d)
                 //}
@@ -33,9 +34,9 @@ controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope,
             yAxis: {
                 //tickFormat: function (d) {
                 //    return
-
+                axisLabel: "number of persons",
                 enabled: true,
-                scaleExtent: [1, 10],
+                scaleExtent: [1, 5],
                 useFixedDomain: false,
                 useNiceScale: false,
                 horizontalOff: false,
@@ -62,8 +63,7 @@ controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope,
     }
 
     searchService.all(function (data) {
-        data.forEach(function getData(item)
-        {
+        data.forEach(function getData(item) {
             graphData[item.gender === "male" ? 0 : 1].values[item.age][1]++;
         })
     });

@@ -38,12 +38,28 @@
 }
 
 .myGrid {
-    width: 600px;
+    width: auto;
     height: 250px;
-    margin: 20px;
+    margin-right: 10px;
+
 }
 
-.input, .tree {
-    margin: 20px;
+.input, .tree, .caption, .myGrid {
+    margin-left: 40px;
+
 }
 
+.caption{
+    color: #31363d;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.search{
+    margin-right: 10px;
+}
+
+.tree {
+    margin-top: 20px;
+
+}

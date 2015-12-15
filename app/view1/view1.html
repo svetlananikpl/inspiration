@@ -1,12 +1,17 @@
 <div ng-controller="MainTableScrollCtrl">
+    <h4 class="caption">Infinite scroll table</h4>
+
     <div id="gridScroll" ui-grid="gridOptions" class="myGrid" ui-grid-infinite-scroll></div>
 </div>
 
 
 <div ng-controller="MainTableFilteringCtrl">
+    <h4 class="caption">General search & sorting table</h4>
+
     <div class="input">
-        <label>Search: </label><input type="text" ng-model="search"/><button ng-click= "searchButton()">Search</button>
+        <label class="search">Search: </label><input class="search" type="text" ng-model="search"/>
+        <button ng-click="searchButton()">Search</button>
     </div>
 
-        <div id="gridFiltering" ui-grid="gridOptions" class="myGrid"></div>
+    <div id="gridFiltering" ui-grid="gridOptions" class="myGrid"></div>
 </div>

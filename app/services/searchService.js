@@ -47,19 +47,19 @@ angular.module('mySearchService', [])
                                 name: 'male',
                                 children: [
                                     {
-                                        "age": "15-35",
+                                        "age": "age: 15-35",
                                         "children": []
                                     },
                                     {
-                                        "age": "36-50",
+                                        "age": "age: 36-50",
                                         "children": []
                                     },
                                     {
-                                        "age": "51-65",
+                                        "age": "age: 51-65",
                                         "children": []
                                     },
                                     {
-                                        "age": "over 60",
+                                        "age": "age: over 60",
                                         "children": []
                                     }
                                 ]
@@ -88,9 +88,18 @@ angular.module('mySearchService', [])
                         ];
 
                         data.forEach(function (item) {
-                            result[item.gender === "male" ? 0 : 1]
-                                .children[(item.age < 36) ? 0 : (item.age < 51) ? 1 : (item.age < 66) ? 2 : 3]
-                                .children.push(item);
+
+                            if (item.age < 36) {
+                                result[item.gender === "male" ? 0 : 1]
+                                    .children[0].children.push(item);
+                            } else if (item.age < 51) {
+                                result[item.gender === "male" ? 0 : 1]
+                                    .children[1].children.push(item);
+                            } else if (item.age < 66) {
+                                result[item.gender === "male" ? 0 : 1]
+                                    .children[2].children.push(item);
+                            } else result[item.gender === "male" ? 0 : 1]
+                                .children[3].children.push(item);
                         });
 
                         return callback(result);

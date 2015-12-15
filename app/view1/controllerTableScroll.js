@@ -10,11 +10,11 @@ angular.module('myControllersTableScroll', [])
             infiniteScrollUp: true,
             infiniteScrollDown: true,
             columnDefs: [
-                {name: 'id'},
-                {name: 'name'},
-                {name: 'gender'},
-                {name: 'age'},
-                {name: 'address'}
+                {name: 'id', width: '10%'},
+                {name: 'name', width: '25%'},
+                {name: 'gender', width: '20%'},
+                {name: 'age', width: '10%'},
+                {name: 'address', width: '35%'}
             ],
             data: 'data',
             onRegisterApi: function (gridApi) {
@@ -31,7 +31,7 @@ angular.module('myControllersTableScroll', [])
 
         $scope.getFirstData = function () {
             var promise = $q.defer();
-            $http.get('data/100_complex.json')
+            $http.get('data/10000_complex.json')
                 .success(function (data) {
                     var newData = $scope.getPage(data, $scope.lastPage);
                     $scope.data = $scope.data.concat(newData);
@@ -42,7 +42,7 @@ angular.module('myControllersTableScroll', [])
 
         $scope.getDataDown = function () {
             var promise = $q.defer();
-            $http.get('data/100_complex.json')
+            $http.get('data/10000_complex.json')
                 .success(function (data) {
                     $scope.lastPage++;
                     var newData = $scope.getPage(data, $scope.lastPage);

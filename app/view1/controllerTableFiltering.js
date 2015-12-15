@@ -19,11 +19,11 @@ angular.module('myControllersFiltering', [])
                 },
                 columnDefs: [
                     // default
-                    {field: 'id', headerCellClass: $scope.highlightFilteredHeader},
-                    {field: 'name', headerCellClass: $scope.highlightFilteredHeader},
+                    {field: 'id', width: '10%', headerCellClass: $scope.highlightFilteredHeader},
+                    {field: 'name', width: '25%', headerCellClass: $scope.highlightFilteredHeader},
                     // pre-populated search field
                     {
-                        field: 'gender', filter: {
+                        field: 'gender', width: '20%', filter: {
                         term: '1',
                         type: uiGridConstants.filter.SELECT,
                         selectOptions: [
@@ -36,7 +36,7 @@ angular.module('myControllersFiltering', [])
 
                     // multiple filters
                     {
-                        field: 'age',
+                        field: 'age', width: '10%',
                         filters: [
                             {
                                 condition: uiGridConstants.filter.GREATER_THAN,
@@ -49,7 +49,7 @@ angular.module('myControllersFiltering', [])
                         ], headerCellClass: $scope.highlightFilteredHeader
                     },
                     // date filter
-                    {field: 'address', headerCellClass: $scope.highlightFilteredHeader}
+                    {field: 'address', width: '35%', headerCellClass: $scope.highlightFilteredHeader}
                 ]
             };
 
