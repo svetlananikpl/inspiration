@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myControllersFiltering', [])
-    .controller('MainTableFilteringCtrl',
+    .controller('TableFilteringCtrl',
         ['$scope', 'uiGridConstants', 'searchService', function ($scope, uiGridConstants, searchService) {
 
             $scope.highlightFilteredHeader = function (row, rowRenderIndex, col, colRenderIndex) {

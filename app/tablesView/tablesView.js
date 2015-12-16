@@ -5,10 +5,10 @@ angular.module('myApp.tablesView', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/tablesView', {
     templateUrl: 'tablesView/tablesView.html',
-    controller: 'tablesViewCtrl'
+    controller: 'View1Ctrl'
   });
 }])
 
-.controller('treeViewCtrl', [function() {
+.controller('View1Ctrl', [function() {
 
 }]);
