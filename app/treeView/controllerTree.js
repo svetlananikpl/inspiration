@@ -29,22 +29,17 @@ controller('treeCtrl', ['$scope', 'searchService', function ($scope, searchServi
 
     searchService.tree(function (data) {
         $scope.dataForTheTree = data;
-   });
+    });
 
-    /*$scope.dataForTheTree =
-        [
-            { "name" : "Joe", "age" : "21", "children" : [
-                { "name" : "Smith", "age" : "42", "children" : [] },
-                { "name" : "Gary", "age" : "21", "children" : [
-                    { "name" : "Jenifer", "age" : "23", "children" : [
-                        { "name" : "Dani", "age" : "32", "children" : [] },
-                        { "name" : "Max", "age" : "34", "children" : [] }
-                    ]}
-                ]}
-            ]},
-            { "name" : "Albert", "age" : "33", "children" : [] },
-            { "name" : "Ron", "age" : "29", "children" : [] }
-        ];*/
+
+    $scope.showSelected = function (node, selected) {
+        $scope.selected = selected;
+        if (selected) {
+                        $scope.selection = node;
+        } else $scope.selection = [];
+        console.log(node);
+    };
+
 
 }]);
 

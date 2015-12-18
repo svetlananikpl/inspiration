@@ -49,6 +49,10 @@
 
 }
 
+.selection{
+    display: none;
+}
+
 .caption{
     color: #31363d;
     margin-top: 40px;
