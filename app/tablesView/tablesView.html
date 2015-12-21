@@ -1,17 +1,24 @@
-<div ng-controller="TableScrollCtrl">
-    <h4 class="caption">Infinite scroll table</h4>
+<div class="container">
+    <div ng-controller="TableScrollCtrl">
+        <h4 class="caption">Infinite scroll table</h4>
 
-    <div id="gridScroll" ui-grid="gridOptions" class="myGrid" ui-grid-infinite-scroll></div>
-</div>
-
-
-<div ng-controller="TableFilteringCtrl">
-    <h4 class="caption">General search & sorting table</h4>
-
-    <div class="input">
-        <label class="search">Search: </label><input class="search" type="text" ng-model="search"/>
-        <button ng-click="searchButton()">Search</button>
+        <div id="gridScroll" ui-grid="gridOptions" class="myGrid" ui-grid-infinite-scroll></div>
     </div>
 
+
+    <div ng-controller="TableFilteringCtrl">
+        <h4 class="caption">General search & sorting table</h4>
+
+        <div class="=panel">
+            <div class="input-group">
+                <input class="form-control" type="text" ng-model="search"/>
+        <span class="input-group-btn">
+        <button class="btn btn-default" ng-click="searchButton()">Search</button>
+            </span>
+            </div>
+        </div>
+
+
     <div id="gridFiltering" ui-grid="gridOptions" class="myGrid"></div>
+</div>
 </div>

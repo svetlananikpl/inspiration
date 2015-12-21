@@ -1,3 +1,4 @@
+<div class="container">
 <div ng-controller="treeCtrl" class="tree">
     <div class="col-md-6">
         <div treecontrol class="tree-classic"
@@ -19,8 +20,12 @@
 
             <p>Age: {{selection.age}}</p>
 
-            <p>Address: {{selection.address}}</p>
+            <p>Address: <br>
+                State: {{selection.address.state }}<br>
+                City: {{selection.address.city}}
+                </br></p>
         </div>
     </div>
+</div>
 
 </div>
