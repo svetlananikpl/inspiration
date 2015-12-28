@@ -6,16 +6,16 @@ var myApp = angular.module('myApp', [
     'myApp.tablesView',
     'myApp.graphsView',
     'myApp.treeView',
-    'myApp.version',
     'myControllersFiltering',
     'myControllersTableScroll',
     'ui.grid',
     'ui.grid.infiniteScroll',
-    'mySearchService',
+    'myDataService',
     'nvd3',
     'myControllersStackedAreaChart',
     'myControllersTree',
-    'treeControl'
+    'treeControl',
+    'common'
     ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {

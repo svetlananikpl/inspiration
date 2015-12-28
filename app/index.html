@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
-    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
     <link rel="styleSheet" href="bower_components/angular-ui-grid/ui-grid.css"/>
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -38,18 +38,9 @@
     </div>
 
 
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a
-        href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
 
 <div ng-view></div>
 
-
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="tablesView/controllerTableScroll.js"></script>
@@ -58,13 +49,11 @@
 <script src="treeView/controllerTree.js"></script>
 <script src="app.js"></script>
 <script src="tablesView/tablesView.js"></script>
+<script src="tablesView/filterTableView.js"></script>
 <script src="graphsView/graphsView.js"></script>
 <script src="treeView/treeView.js"></script>
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
 <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-<script src="services/searchService.js"></script>
+<script src="services/dataService.js"></script>
 <script src="bower_components/d3/d3.js"></script>
 <script src="bower_components/nvd3/build/nv.d3.js"></script>
 <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>

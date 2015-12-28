@@ -2,7 +2,7 @@
  * Created by Admin on 11.12.2015.
  */
 angular.module('myControllersStackedAreaChart', []).
-controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope, searchService) {
+controller('stackedAreaChartCtrl', ['$scope', 'dataService', function ($scope, dataService) {
 
     $scope.options = {
         chart: {
@@ -62,7 +62,7 @@ controller('stackedAreaChartCtrl', ['$scope', 'searchService', function ($scope,
         graphData[1].values[i] = [i, 0];
     }
 
-    searchService.all(function (data) {
+    dataService.all(function (data) {
         data.forEach(function getData(item) {
             graphData[item.gender === "male" ? 0 : 1].values[item.age][1]++;
         })

@@ -1,11 +1,17 @@
 /**
  * Created by Admin on 10.12.2015.
  */
-angular.module('mySearchService', [])
-    .factory('searchService', ['$http', function searchServiceFactory($http) {
+angular.module('myDataService', [])
+    .factory('dataService', ['$http', function searchServiceFactory($http) {
         return {
             all: function (callback) {
                 $http.get('data/100_complex.json')
+                    .success(function (data) {
+                        return callback(data);
+                    })
+            },
+            all10000: function (callback) {
+                $http.get('data/10000_complex.json')
                     .success(function (data) {
                         return callback(data);
                     })
@@ -47,20 +53,20 @@ angular.module('mySearchService', [])
                                 name: 'male',
                                 children: [
                                     {
-                                        "age": "age: 15-35",
-                                        "children": []
+                                        age: 'age: 15-35',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: 36-50",
-                                        "children": []
+                                        age: 'age: 36-50',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: 51-65",
-                                        "children": []
+                                        age: 'age: 51-65',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: over 60",
-                                        "children": []
+                                        age: 'age: over 60',
+                                        children: []
                                     }
                                 ]
                             },
@@ -68,20 +74,20 @@ angular.module('mySearchService', [])
                                 name: 'female',
                                 children: [
                                     {
-                                        "age": "age: 15-35",
-                                        "children": []
+                                        age: 'age: 15-35',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: 36-50",
-                                        "children": []
+                                        age: 'age: 36-50',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: 51-65",
-                                        "children": []
+                                        age: 'age: 51-65',
+                                        children: []
                                     },
                                     {
-                                        "age": "age: over 65",
-                                        "children": []
+                                        age: 'age: over 65',
+                                        children: []
                                     }
                                 ]
                             }
@@ -90,15 +96,15 @@ angular.module('mySearchService', [])
                         data.forEach(function (item) {
 
                             if (item.age < 36) {
-                                result[item.gender === "male" ? 0 : 1]
+                                result[item.gender === 'male' ? 0 : 1]
                                     .children[0].children.push(item);
                             } else if (item.age < 51) {
-                                result[item.gender === "male" ? 0 : 1]
+                                result[item.gender === 'male' ? 0 : 1]
                                     .children[1].children.push(item);
                             } else if (item.age < 66) {
-                                result[item.gender === "male" ? 0 : 1]
+                                result[item.gender === 'male' ? 0 : 1]
                                     .children[2].children.push(item);
-                            } else result[item.gender === "male" ? 0 : 1]
+                            } else result[item.gender === 'male' ? 0 : 1]
                                 .children[3].children.push(item);
                         });
 

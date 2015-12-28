@@ -1,31 +1,29 @@
 <div class="container">
-<div ng-controller="treeCtrl" class="tree">
-    <div class="col-md-6">
-        <div treecontrol class="tree-classic"
-             tree-model="dataForTheTree"
-             options="treeOptions"
-             on-selection="showSelected(node, selected)"
-             selected-node="node1">
-            {{node.name}} {{node.age}}
+    <div ng-controller="treeCtrl" class="tree">
+        <div class="col-md-6">
+            <div treecontrol class="tree-classic"
+                 tree-model="dataForTheTree"
+                 options="treeOptions"
+                 on-selection="showSelected(node, selected)"
+                 selected-node="node1">
+                {{node.name}} {{node.age}}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div ng-if="selected">
+                <p>Id: {{selection.id}}</p>
+
+                <p>Name: {{selection.name}}</p>
+
+                <p>Gender: {{selection.gender}}</p>
+
+                <p>Age: {{selection.age}}</p>
+
+                <p>Address: {{selection.address.state + ', ' + selection.address.city}}
+                </p>
+            </div>
         </div>
     </div>
-
-    <div class="col-md-6">
-        <div ng-if="selected">
-            <p>Id: {{selection.id}}</p>
-
-            <p>Name: {{selection.name}}</p>
-
-            <p>Gender: {{selection.gender}}</p>
-
-            <p>Age: {{selection.age}}</p>
-
-            <p>Address: <br>
-                State: {{selection.address.state }}<br>
-                City: {{selection.address.city}}
-                </br></p>
-        </div>
-    </div>
-</div>
 
 </div>
