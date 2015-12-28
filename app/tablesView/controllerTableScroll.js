@@ -2,7 +2,7 @@
 
 angular.module('myControllersTableScroll', [])
     .controller('TableScrollCtrl',
-    ['$scope', '$http', '$timeout', '$q', function ($scope, $http, $timeout, $q) {
+    ['$scope', '$http', '$timeout', '$q', 'dataService', function ($scope, $http, $timeout, $q, dataService) {
 
 
         $scope.gridOptions = {
@@ -31,8 +31,7 @@ angular.module('myControllersTableScroll', [])
 
         $scope.getFirstData = function () {
             var promise = $q.defer();
-            $http.get('data/10000_complex.json')
-                .success(function (data) {
+            dataService.all10000(function (data) {
                     var newData = $scope.getPage(data, $scope.lastPage);
                     $scope.data = $scope.data.concat(newData);
                     promise.resolve();
@@ -63,8 +62,7 @@ angular.module('myControllersTableScroll', [])
 
         $scope.getDataUp = function () {
             var promise = $q.defer();
-            $http.get('/data/10000_complex.json')
-                .success(function (data) {
+            dataService.all10000(function (data) {
                     $scope.firstPage--;
                     var newData = $scope.getPage(data, $scope.firstPage);
                     $scope.gridApi.infiniteScroll.saveScrollPercentage();
