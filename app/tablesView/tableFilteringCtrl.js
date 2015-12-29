@@ -24,12 +24,12 @@ angular.module('myControllersFiltering', [])
             // pre-populated search field
             {
                 field: 'gender', width: '20%', filter: {
-                term: '1',
-                type: uiGridConstants.filter.SELECT,
-                selectOptions: [
-                    {value: '1', label: 'male'},
-                    {value: '2', label: 'female'}]
-            },
+                    term: '1',
+                    type: uiGridConstants.filter.SELECT,
+                    selectOptions: [
+                        {value: '1', label: 'male'},
+                        {value: '2', label: 'female'}]
+                },
                 cellFilter: 'mapGender', headerCellClass: $scope.highlightFilteredHeader
             },
 
@@ -49,7 +49,8 @@ angular.module('myControllersFiltering', [])
                 ], headerCellClass: $scope.highlightFilteredHeader
             },
             // date filter
-            {field: 'address', type: 'object', cellFilter: 'address', width: '35%', headerCellClass: $scope.highlightFilteredHeader}
+            {field: 'address', type: 'object',
+                filterCellFiltered: true, cellFilter: 'address', width: '35%', headerCellClass: $scope.highlightFilteredHeader}
         ]
     };
 
