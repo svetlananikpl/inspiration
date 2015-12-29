@@ -3,9 +3,6 @@
 // Declare app level module which depends on views, and components
 var myApp = angular.module('myApp', [
     'ngRoute',
-    'myApp.tablesView',
-    'myApp.graphsView',
-    'myApp.treeView',
     'myControllersFiltering',
     'myControllersTableScroll',
     'ui.grid',
@@ -19,6 +16,23 @@ var myApp = angular.module('myApp', [
     ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/tablesView'});
+    $routeProvider.
+    when('/tableViewScroll', {
+        templateUrl: 'tableViewScroll/tableViewScroll.html',
+        controller: 'TableScrollCtrl'
+    }).
+    when('/tableViewFiltering', {
+        templateUrl: 'tableViewFiltering/tableViewFiltering.html',
+        controller: 'TableFilteringCtrl'
+    }).
+    when('/graphsView', {
+        templateUrl: 'graphsView/graphsView.html',
+        controller: 'stackedAreaChartCtrl'
+    }).
+    when('/treeView', {
+        templateUrl: 'treeView/treeView.html',
+        controller: 'treeCtrl'
+    }).
+    otherwise({redirectTo: '/tableViewScroll'});
 }]);
 
