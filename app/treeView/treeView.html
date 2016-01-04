@@ -1,7 +1,7 @@
 <div class="container">
     <div ng-controller="treeCtrl" class="tree">
         <div class="col-md-6">
-            <div treecontrol class="tree-classic"
+            <div treecontrol class="tree-light"
                  tree-model="dataForTheTree"
                  options="treeOptions"
                  on-selection="showSelected(node, selected)"
@@ -12,15 +12,15 @@
 
         <div class="col-md-6">
             <div ng-if="selected">
-                <p>Id: {{selection.id}}</p>
+                <p>Id: <span class="details">{{selection.id}}</span></p>
 
-                <p>Name: {{selection.name}}</p>
+                <p>Name: <span class="details">{{selection.name}}</span></p>
 
-                <p>Gender: {{selection.gender}}</p>
+                <p>Gender: <span class="details">{{selection.gender}}</span></p>
 
-                <p>Age: {{selection.age}}</p>
+                <p>Age: <span class="details">{{selection.age}}</span></p>
 
-                <p>Address: {{selection.address.state + ', ' + selection.address.city}}
+                <p>Address: <span class="details">{{selection.address.state + ', ' + selection.address.city}}
                 </p>
             </div>
         </div>

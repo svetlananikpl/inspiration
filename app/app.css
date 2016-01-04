@@ -1,57 +1,22 @@
 /* app css stylesheet */
 
 
-
-.menu {
-    background: #cccdce;
-    min-height: 40px;
-    }
-
-.menu ul.nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.menu ul.nav li {
-    display: inline-block;
-    line-height: 40px;
-    margin: 0;
-
-}
-
-.menu ul.nav li a {
-    -webkit-transition: color 0.25s;
-    transition: color 0.25s;
-    color: #fff;
-    margin: 0;
-    padding: 0 20px;
-}
-
-.menu ul.nav li a:hover {
-    background-color: #cccdce;
-    color: #31363d;
-    cursor: pointer;
-    -webkit-transition: color 1s;
-    transition: color 1s;
-}
-
 .myGrid {
     height: 250px;
 }
 
 
-.selection{
+.selection {
     display: none;
 }
 
-.caption{
-    color: #31363d;
-    margin-top: 40px;
-
+p {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size:13px;
+    color: #555;
 }
 
-.tree {
-    margin-top: 20px;
-}
 
+.details {
+    font-weight: bold;
+}
