@@ -1,6 +1,74 @@
 <div ng-controller="TableFilteringCtrl">
     <h4>General search & sorting table</h4>
 
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+        Click to open advanced search
+    </button>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Advanced search</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Id</span>
+                        <input type="text" class="form-control" ng-model="filteredId" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">Name</span>
+                        <input type="text" class="form-control" ng-model="filteredName" aria-describedby="basic-addon2">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">Gender</span>
+                        <select class="form-control" name="gender" ng-model="filteredGender">
+                            <option value="">All</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon5">Age</span>
+                        <input type="text" class="form-control" placeholder="greater than" ng-model="greaterThanAge"
+                               aria-describedby="basic-addon5">
+                        <input type="text" class="form-control" placeholder="less than" ng-model="lessThanAge" aria-describedby="basic-addon5">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon4">Address</span>
+                        <input type="text" class="form-control" ng-model="filteredAddress" aria-describedby="basic-addon4">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon6">Birth Date</span>
+                        <input type="text" class="form-control" placeholder="the year of birth" ng-model="birthDate" aria-describedby="basic-addon6">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon7">Created Time</span>
+                        <input type="text" class="form-control" placeholder="greater than yyyy-mm-dd" ng-model="greaterThanTime"
+                               aria-describedby="basic-addon5">
+                        <input type="text" class="form-control" placeholder="less than yyyy-mm-dd" ng-model="lessThanTime"
+                               aria-describedby="basic-addon7">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="filterButton()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="panel">
         <div class="input-group">
             <input class="form-control" type="text" ng-model="search"/>

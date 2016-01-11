@@ -4,86 +4,167 @@ angular.module('myControllersFiltering', [])
     .controller('TableFilteringCtrl',
         ['$scope', 'uiGridConstants', 'dataService', function ($scope, uiGridConstants, dataService) {
 
-    $scope.highlightFilteredHeader = function (row, rowRenderIndex, col, colRenderIndex) {
-        if (col.filters[0].term) {
-            return 'header-filtered';
-        } else {
-            return '';
-        }
-    };
+            $scope.highlightFilteredHeader = function (row, rowRenderIndex, col, colRenderIndex) {
+                if (col.filters[0].term) {
+                    return 'header-filtered';
+                } else {
+                    return '';
+                }
+            };
 
-    $scope.gridOptions = {
-        enableFiltering: true,
-        onRegisterApi: function (gridApi) {
-            $scope.gridApi = gridApi;
-        },
-        columnDefs: [
-            // default
-            {field: 'id', width: '10%', headerCellClass: $scope.highlightFilteredHeader},
-            {field: 'name', width: '25%', headerCellClass: $scope.highlightFilteredHeader},
-            // pre-populated search field
-            {
-                field: 'gender', width: '20%', filter: {
-                    term: '1',
-                    type: uiGridConstants.filter.SELECT,
-                    selectOptions: [
-                        {value: '1', label: 'male'},
-                        {value: '2', label: 'female'}]
+            $scope.gridOptions = {
+                enableFiltering: true,
+                onRegisterApi: function (gridApi) {
+                    $scope.gridApi = gridApi;
                 },
-                cellFilter: 'mapGender', headerCellClass: $scope.highlightFilteredHeader
-            },
-
-
-            // multiple filters
-            {
-                field: 'age', width: '10%',
-                filters: [
+                columnDefs: [
+                    // default
                     {
-                        condition: uiGridConstants.filter.GREATER_THAN,
-                        placeholder: 'greater than'
+                        name: 'id', width: '5%', enableFiltering: false, filter: {
+                        noTerm: true,
+                        condition: function (searchTerm, cellValue) {
+                            if ($scope.filteredId) {
+
+                                return cellValue == $scope.filteredId;
+                            }
+                            return true;
+                        }
+                    }
                     },
                     {
-                        condition: uiGridConstants.filter.LESS_THAN,
-                        placeholder: 'less than'
+                        name: 'name', width: '20%', enableFiltering: false, filter: {
+                        noTerm: true,
+                        condition: function (searchTerm, cellValue) {
+                            if ($scope.filteredName) {
+                                return cellValue.toLowerCase().indexOf($scope.filteredName.toLowerCase()) + 1;
+                            }
+                            return true;
+                        }
                     }
-                ], headerCellClass: $scope.highlightFilteredHeader
-            },
-            // date filter
-            {field: 'address', type: 'object',
-                filterCellFiltered: true, cellFilter: 'address', width: '35%', headerCellClass: $scope.highlightFilteredHeader}
-        ]
-    };
+                    },
+                    // pre-populated search field
+                    {
+                        name: 'gender', width: '10%', enableFiltering: false, cellFilter: 'mapGender', filter: {
+                        noTerm: true,
+                        condition: function (searchTerm, cellValue) {
+                            if ($scope.filteredGender) {
+                                return cellValue == $scope.filteredGender;
+                            }
+                            return true;
+                        }
+                    }
+                    },
 
-    $scope.gridOptions.data = [];
+
+                    // multiple filters
+                    {
+                        name: 'age', width: '10%', enableFiltering: false, filters: [
+                        {
+                            noTerm: true,
+                            condition: function (searchTerm, cellValue) {
+                                if ($scope.greaterThanAge) {
+                                    return $scope.greaterThanAge < cellValue;
+                                }
+                                return true;
+                            }
+                        },
+                        {
+                            noTerm: true,
+                            condition: function (searchTerm, cellValue) {
+                                if ($scope.lessThanAge) {
+                                    return $scope.lessThanAge > cellValue;
+                                }
+                                return true;
+                            }
+                        }
+                    ]
+                    },
+                    // date filter
+                    {
+                        name: 'address', type: 'object',
+                        filterCellFiltered: true, cellFilter: 'address', width: '25%', enableFiltering: false, filter: {
+                        noTerm: true,
+                        condition: function (searchTerm, cellValue) {
+                            if ($scope.filteredAddress) {
+
+                                return cellValue.toLowerCase().indexOf($scope.filteredAddress.toLowerCase()) + 1;
+                            }
+                            return true;
+                        }
+                    }
+                    },
+                    {
+                        name: 'birthDate', width: '15%', enableFiltering: false, filter: {
+                        noTerm: true,
+                        condition: function (searchTerm, cellValue) {
+                            if ($scope.birthDate) {
+                                return cellValue.slice(0, 4) == $scope.birthDate;
+                            }
+                            return true;
+                        }
+                    }
+                    },
+                    {
+                        name: 'createTime', width: '15%', enableFiltering: false, filters: [
+                        {
+                            noTerm: true,
+                            condition: function (searchTerm, cellValue) {
+                                if ($scope.greaterThanTime) {
+                                  // var greterTime = newDate($scope.greaterThanTime.slice(0, 4),
+                                  //      $scope.greaterThanTime.slice(5, 7) - 1,$scope.greaterThanTime.slice(8, 10))
+
+                                    return Date.parse($scope.greaterThanTime) < Date.parse(cellValue);
+                                }
+                                return true;
+                            }
+                        },
+                        {
+                            noTerm: true,
+                            condition: function (searchTerm, cellValue) {
+                                if ($scope.lessThanTime) {
+                                    return Date.parse($scope.lessThanTime) > Date.parse(cellValue);
+                                }
+                                return true;
+                            }
+                        }
+                    ]
+                    }
+                ]
+            };
+
+            $scope.gridOptions.data = [];
 
 
-
-    dataService.all(function (data) {
-        $scope.gridOptions.data = data;
-        data.forEach(function changeGender(row) {
-            row.gender = row.gender === 'male' ? '1' : '2';
-        });
-    });
-
-    $scope.searchButton = function(){
-
-        var searchStr = $scope.search;
-        dataService.search(searchStr, function (data) {
-            $scope.gridOptions.data = data;
-            data.forEach(function changeGender(row) {
-                row.gender = row.gender === 'male' ? '1' : '2';
+            dataService.all(function (data) {
+                $scope.gridOptions.data = data;
+                data.forEach(function changeGender(row) {
+                    row.gender = row.gender === 'male' ? '1' : '2';
+                });
             });
-            $scope.gridApi.core.refresh();
-        })
-    };
+
+            $scope.searchButton = function () {
+
+                var searchStr = $scope.search;
+                dataService.search(searchStr, function (data) {
+                    $scope.gridOptions.data = data;
+                    data.forEach(function changeGender(row) {
+                        row.gender = row.gender === 'male' ? '1' : '2';
+                    });
+                    $scope.gridApi.core.refresh();
+                })
+            };
+
+            $scope.filterButton = function () {
+                $scope.gridApi.core.refresh();
+            };
 
 
-    $scope.toggleFiltering = function () {
-        $scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering;
-        $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
-    };
+            $scope.toggleFiltering = function () {
+                $scope.gridOptions.enableFiltering = !$scope.gridOptions.enableFiltering;
+                $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+            };
 
-}])
+        }])
 
 ;
 
