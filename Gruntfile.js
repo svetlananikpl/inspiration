@@ -19,6 +19,14 @@ module.exports = function (grunt) {
                         dest: 'dist',    // destination folder
                         expand: true           // required when using cwd
                     }]
+                },
+                json: {
+                    files: [{
+                        cwd: 'app',  // set working folder / root to copy
+                        src: ['**/*.json'],      // copy all files and subfolders with ending .html
+                        dest: 'dist',    // destination folder
+                        expand: true           // required when using cwd
+                    }]
                 }
             },
 
@@ -60,7 +68,7 @@ module.exports = function (grunt) {
                     options: {
                         port: 3000,
                         base: 'dist',
-                        keepalive : true
+                        keepalive: true
                     }
                 }
             }
@@ -82,6 +90,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean',
         'copy:html',
+        'copy:json',
         'useminPrepare',
         'concat:generated',
         'cssmin:generated',
@@ -90,7 +99,6 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
-    grunt.registerTask('default', ['connect', 'concat', 'uglify']);
     grunt.registerTask('server', ['connect']);
 
 

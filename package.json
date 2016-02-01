@@ -57,6 +57,7 @@
     "bower": "^1.6.9",
     "http-server": "^0.6.1",
     "jasmine-core": "^2.4.1",
+    "jquery": "^2.2.0",
     "karma": "^0.12.37",
     "karma-chrome-launcher": "^0.1.12",
     "karma-firefox-launcher": "^0.1.7",
