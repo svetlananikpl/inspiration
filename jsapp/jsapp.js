@@ -1,21 +1,53 @@
-$(function () {
-    $.getJSON('data/100_complex.json', function (data) {
-
-        data.forEach(function (item) {
-            $('#data_complex').append('<tr><td>' + item.id + '</td>' +
-                '<td>' + item.name + '</td>' +
-                '<td>' + item.gender + '</td>' +
-                '<td>' + item.age + '</td>' +
-                '<td>' + item.address.state + ", " + item.address.city + '</td></tr>');
-        });
-    });
-});
-
 var grid = document.getElementById('data_complex');
+var searchButton = document.getElementById('buttonSearchInput');
+var filteringButton = document.getElementById('buttonFilteringInput');
 var sortingFlag = {
     columnIndex: null,
     asc: null
 };
+
+(function loadData() {
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'data/100_complex.json', true);
+
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+
+        if (xhr.readyState != 4)  return;
+
+        if (xhr.status != 200) {
+
+            alert(xhr.status + ': ' + xhr.statusText);
+
+        } else {
+            try {
+                var data = JSON.parse(xhr.responseText);
+
+            } catch (e) {
+                alert("Некорректный ответ " + e.message);
+            }
+            return drawGrid(data);
+
+        }
+
+    };
+
+})();
+
+function drawGrid(data) {
+    data.forEach(function (item) {
+        $('#data_complex').append('<tr><td>' + item.id + '</td>' +
+            '<td>' + item.name + '</td>' +
+            '<td>' + item.gender + '</td>' +
+            '<td>' + item.age + '</td>' +
+            '<td>' + item.address.state + ", " + item.address.city + '</td></tr>');
+    });
+}
+
+
 function resetStyles() {
     thList = grid.getElementsByTagName('th');
     for (i = 0; i < thList.length; i++) {
@@ -24,7 +56,7 @@ function resetStyles() {
 }
 grid.onclick = function (e) {
     if (e.target.tagName != 'TH') return;
-    if(sortingFlag.columnIndex != e.target.cellIndex) {
+    if (sortingFlag.columnIndex != e.target.cellIndex) {
         resetStyles();
         sortingFlag.asc = true;
         sortingFlag.columnIndex = e.target.cellIndex;
@@ -35,10 +67,14 @@ grid.onclick = function (e) {
     sortGrid();
 };
 
+
+
+console.log(searchButton);
+
 function sortGrid() {
     var colNum = sortingFlag.columnIndex;
     var way = sortingFlag.asc;
-    if(colNum != null) {
+    if (colNum != null) {
         var tbody = grid.getElementsByTagName('tbody')[0];
         var rowsArray = [].slice.call(tbody.rows);
         var compare;
@@ -76,51 +112,80 @@ function sortGrid() {
     }
 }
 
-function searchInput(searchLoc) {
-    search = document.getElementById(searchLoc).value;
+searchButton.onclick = function searchInput() {
+    search = document.getElementById('search').value;
     if (!search) {
         return;
     }
     search = search.toString().toLowerCase();
-    console.log(search);
     grid.removeChild(grid.getElementsByTagName('tbody')[0]);
-    $(function () {
-        $.getJSON('data/100_complex.json', function (data) {
 
-            data.forEach(function (item) {
-                var found = false;
-                found = foundFunction(item, search);
-                if (found) {
-                    $('#data_complex').append('<tr><td>' + item.id + '</td>' +
-                        '<td>' + item.name + '</td>' +
-                        '<td>' + item.gender + '</td>' +
-                        '<td>' + item.age + '</td>' +
-                        '<td>' + item.address.state + ", " + item.address.city + '</td></tr>');
+    (function loadData() {
 
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'data/100_complex.json', true);
+
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState != 4)  return;
+
+            if (xhr.status != 200) {
+
+                alert(xhr.status + ': ' + xhr.statusText);
+
+            } else {
+                try {
+                    var data = JSON.parse(xhr.responseText);
+
+                } catch (e) {
+                    alert("Некорректный ответ " + e.message);
                 }
-            });
+                return drawInputSearchGrid(data);
 
-            function foundFunction(item, search) {
-                var found = false;
-                Object.keys(item).forEach(function (key) {
-                    if (typeof item[key] == 'object') {
-                        if (foundFunction(item[key], search)) {
-                            found = true;
-                        }
-                    }
-                    else if (String(item[key]).toLowerCase().indexOf(search) !== -1) {
-                        console.log(search);
-                        found = true;
-                    }
-                });
-                return found;
+            }
+
+        };
+
+    })();
+
+    function drawInputSearchGrid(data) {
+
+        data.forEach(function (item) {
+            var found = false;
+            found = foundFunction(item, search);
+            if (found) {
+                $('#data_complex').append('<tr><td>' + item.id + '</td>' +
+                    '<td>' + item.name + '</td>' +
+                    '<td>' + item.gender + '</td>' +
+                    '<td>' + item.age + '</td>' +
+                    '<td>' + item.address.state + ", " + item.address.city + '</td></tr>');
+
             }
         });
-    });
 
-}
+        function foundFunction(item, search) {
+            var found = false;
+            Object.keys(item).forEach(function (key) {
+                if (typeof item[key] == 'object') {
+                    if (foundFunction(item[key], search)) {
+                        found = true;
+                    }
+                }
+                else if (String(item[key]).toLowerCase().indexOf(search) !== -1) {
+                    console.log(search);
+                    found = true;
+                }
+            });
+            return found;
+        }
+    }
 
-function filteringInput() {
+};
+
+filteringButton.onclick = function filteringInput() {
     var id = +document.getElementById('Id').value;
     var name = document.getElementById('Name').value.toString().toLowerCase();
     var gender = document.getElementById('Gender').value.toString().toLowerCase();

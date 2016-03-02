@@ -2,7 +2,7 @@ var fs = require('fs');
 var obj = JSON.parse(fs.readFileSync('input.json', 'utf8'));
 
 obj.forEach(function (item) {
-    var date =  new Date()
+    var date =  new Date();
     date.setFullYear(date.getFullYear() - item.age);
     item.birthDate = date;
     var dateCreate = new Date();

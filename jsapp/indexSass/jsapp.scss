@@ -1,0 +1,221 @@
+
+$mainBackground: #f7f7f7;
+$mainBorderColor: #EEE;
+$mainBorder: 2px solid $mainBorderColor;
+$modalBorder: 1px solid $mainBorderColor;
+$mainBorderRadius: 7px;
+
+@mixin transform($translate) {
+  -webkit-transform: $translate;
+  -moz-transform: $translate;
+  -o-transform: $translate;
+  transform: $translate;
+}
+
+@mixin transition($transform) {
+  -webkit-transition: -webkit-transform $transform;
+  -moz-transition: -moz-transform $transform;
+  -o-transition: -o-transform $transform;
+  transition: $transform;
+}
+
+
+body{
+  font-size: 0.9em;
+}
+
+.display {
+  width: 100%;
+  text-align: center;
+}
+
+.panel-body {
+  margin: 0.5%;
+  padding: 1.2em;
+  background-color: $mainBackground;
+  border: $mainBorder;
+  border-radius: $mainBorderRadius;
+
+}
+
+.well{
+  background-color: $mainBackground;
+  border: $mainBorder;
+  border-radius: $mainBorderRadius;
+  padding: 0 1%;
+}
+
+.btn{
+  margin: 2px;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5em;
+  display: inline-block;
+  &-primary{
+    background-color: #428bca;
+    border: 2px solid #328bca;
+    border-radius: $mainBorderRadius;
+  }
+
+  &-info{
+    background-color: #5bc0de;
+    border: 2px solid #4bc0de;
+    border-radius: $mainBorderRadius;
+  }
+  &:hover {
+    color: $mainBorderColor;
+
+  }
+}
+
+
+h4{
+  font-weight: normal;
+  font-size: 1.3em;
+
+}
+
+
+.modal{
+  /* кнопка закрытия окна */
+  .btn-close {
+    color: #aaa;
+    cursor: pointer;
+    font-size: 30px;
+    text-decoration: none;
+    position: absolute;
+    right: 5px;
+    top: 0;
+  }
+  .btn-close:hover {
+    color: #555;
+  }
+  /* слой затемнения */
+  &-wrap:before {
+    content: "";
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 101;
+  }
+  &-overlay {
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 102;
+  }
+  /* активация слоя затемнения и модального блока */
+  &-open:checked ~ &-wrap:before,
+  &-open:checked ~ &-wrap .modal-overlay {
+    display: block;
+  }
+  &-open:checked ~ &-wrap .modal-dialog {
+    @include transform(translate(-50%, 0));
+
+  }
+  /* элементы модального окна */
+  &-dialog {
+    background: $mainBackground;
+    border: $modalBorder;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: -100%;
+    @include transform(translate(-50%, -500));
+    @include transition(0.4s ease-out);
+    width: 80%;
+    max-width: 500px;
+    z-index: 103;
+  }
+  &-body {
+    padding: 20px;
+  }
+
+  &-header {
+    border-bottom: $modalBorder;
+    padding: 20px 20px;
+    h4 {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  &-footer {
+    border-top: $modalBorder;
+    text-align: right;
+  }
+}
+
+#buttonFilteringInput, #buttonSearchInput{
+  border-radius: $mainBorderRadius;
+  border: $mainBorder;
+  background-color: #fff;
+  color: #000;
+  padding: 0.5em 0.5em;
+  height: 2.4em;
+  display: inline-block;
+  vertical-align: middle;
+  &:hover {
+    background-color:$mainBorderColor;
+  }
+}
+
+
+input[type=text],
+textarea {
+  width: 94%;
+  height: 2em;
+  border: $mainBorder;
+  border-radius: $mainBorderRadius;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.panel{
+  margin: 1em 0;
+
+}
+
+.table{
+  border-collapse: collapse;
+  border: $mainBorder;
+  border-radius: $mainBorderRadius;
+  width: 100%;
+  background: #fff;
+}
+
+th{
+  border: $mainBorder;
+  padding: 10px 15px;
+  background: $mainBackground;
+  text-align: left;
+}
+
+td {
+  padding: 10px 15px;
+  border: $mainBorder;
+}
+
+tr:nth-child(2n) {
+  background: $mainBackground;
+}
+
+@media screen and (max-width: 980px) {
+
+  th, td{
+    padding: 2% 2%;
+  }
+
+  .btn{
+    display: block;
+    text-align: center;
+  }
+
+}
